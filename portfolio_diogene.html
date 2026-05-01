@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freddin Landy Diogene — IT Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --prism-bg: #0a0a0f;
+    --prism-surface: #0f0f1a;
+    --prism-card: #13131f;
+    --prism-border: rgba(120,80,255,0.2);
+    --prism-purple: #7c3aed;
+    --prism-cyan: #06b6d4;
+    --prism-green: #10b981;
+    --prism-accent: #a855f7;
+    --prism-text: #e2e8f0;
+    --prism-muted: #64748b;
+    --carbon-line: rgba(255,255,255,0.03);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--prism-bg);
+    color: var(--prism-text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Carbon fiber background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, var(--carbon-line) 0px, var(--carbon-line) 1px, transparent 1px, transparent 40px),
+      repeating-linear-gradient(90deg, var(--carbon-line) 0px, var(--carbon-line) 1px, transparent 1px, transparent 40px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Prismatic orb background */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orb2 {
+    position: fixed;
+    bottom: -10%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--prism-border);
+  }
+
+  .nav-logo {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--prism-accent);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--prism-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--prism-cyan); }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 8rem;
+    max-width: 100%;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .hero-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--prism-cyan);
+    letter-spacing: 0.3em;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--prism-cyan);
+    display: inline-block;
+  }
+
+  h1.hero-name {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    background: linear-gradient(135deg, #e2e8f0 20%, #a855f7 60%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    font-weight: 400;
+    color: var(--prism-accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .hero-desc {
+    max-width: 600px;
+    color: #94a3b8;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .badge {
+    padding: 0.35rem 1rem;
+    border: 1px solid rgba(6,182,212,0.4);
+    border-radius: 2px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--prism-cyan);
+    background: rgba(6,182,212,0.06);
+    font-family: 'Share Tech Mono', monospace;
+    text-transform: uppercase;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    padding: 0.85rem 2.5rem;
+    background: linear-gradient(135deg, var(--prism-purple), var(--prism-accent));
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: opacity 0.3s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-outline {
+    padding: 0.85rem 2.5rem;
+    border: 1px solid var(--prism-cyan);
+    color: var(--prism-cyan);
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.3s;
+  }
+
+  .btn-outline:hover { background: rgba(6,182,212,0.1); }
+
+  /* Floating particles (CSS-only) */
+  .particle {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .p1 { top: 20%; left: 15%; background: var(--prism-purple); animation: float1 8s ease-in-out infinite; opacity: 0.6; }
+  .p2 { top: 60%; left: 80%; background: var(--prism-cyan); animation: float2 10s ease-in-out infinite; opacity: 0.5; }
+  .p3 { top: 40%; left: 50%; background: var(--prism-green); animation: float3 12s ease-in-out infinite; opacity: 0.4; }
+  .p4 { top: 75%; left: 25%; background: var(--prism-accent); animation: float1 9s ease-in-out infinite 2s; opacity: 0.5; }
+  .p5 { top: 10%; left: 70%; background: var(--prism-cyan); animation: float2 11s ease-in-out infinite 1s; opacity: 0.4; }
+  .p6 { top: 85%; left: 60%; background: var(--prism-purple); animation: float3 7s ease-in-out infinite 3s; opacity: 0.5; }
+
+  @keyframes float1 {
+    0%, 100% { transform: translate(0,0); }
+    33% { transform: translate(15px, -20px); }
+    66% { transform: translate(-10px, 10px); }
+  }
+  @keyframes float2 {
+    0%, 100% { transform: translate(0,0); }
+    50% { transform: translate(-20px, -15px); }
+  }
+  @keyframes float3 {
+    0%, 100% { transform: translate(0,0); }
+    25% { transform: translate(20px, 10px); }
+    75% { transform: translate(-15px, -20px); }
+  }
+
+  /* SECTION HEADERS */
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--prism-cyan);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(6,182,212,0.4), transparent);
+  }
+
+  h2.section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: var(--prism-text);
+  }
+
+  h2.section-title span {
+    color: var(--prism-accent);
+  }
+
+  /* ABOUT SECTION */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: #94a3b8;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 1.25rem;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .metric-card {
+    background: var(--prism-card);
+    border: 1px solid var(--prism-border);
+    border-top: 2px solid var(--prism-purple);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--prism-purple), var(--prism-cyan));
+  }
+
+  .metric-value {
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--prism-accent);
+    display: block;
+  }
+
+  .metric-label {
+    font-size: 0.85rem;
+    color: var(--prism-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  /* SKILLS — HEXAGONAL GRID */
+  .skills-hex-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+
+  .hex-skill {
+    position: relative;
+    width: 140px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    background: var(--prism-card);
+    border: 1px solid var(--prism-border);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: default;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .hex-skill:hover {
+    transform: scale(1.05);
+    border-color: var(--prism-cyan);
+  }
+
+  .hex-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .hex-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--prism-text);
+    line-height: 1.2;
+  }
+
+  .hex-skill.purple { border-color: rgba(168,85,247,0.4); }
+  .hex-skill.cyan { border-color: rgba(6,182,212,0.4); }
+  .hex-skill.green { border-color: rgba(16,185,129,0.4); }
+  .hex-skill.purple:hover { border-color: var(--prism-accent); }
+  .hex-skill.cyan:hover { border-color: var(--prism-cyan); }
+  .hex-skill.green:hover { border-color: var(--prism-green); }
+
+  /* SKILLS BAR */
+  .skills-bars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .skill-bar-item { }
+
+  .skill-bar-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-bar-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--prism-text);
+  }
+
+  .skill-bar-pct {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--prism-cyan);
+  }
+
+  .skill-bar-track {
+    height: 4px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    position: relative;
+    animation: barFill 1.5s ease-out forwards;
+    transform-origin: left;
+  }
+
+  @keyframes barFill {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  .fill-purple { background: linear-gradient(90deg, var(--prism-purple), var(--prism-accent)); }
+  .fill-cyan { background: linear-gradient(90deg, var(--prism-cyan), #67e8f9); }
+  .fill-green { background: linear-gradient(90deg, var(--prism-green), #6ee7b7); }
+
+  /* EXPERIENCE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--prism-purple), var(--prism-cyan), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 2rem;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.4rem;
+    top: 0.4rem;
+    width: 12px;
+    height: 12px;
+    background: var(--prism-purple);
+    border: 2px solid var(--prism-accent);
+    transform: rotate(45deg);
+  }
+
+  .timeline-card {
+    background: var(--prism-card);
+    border: 1px solid var(--prism-border);
+    padding: 2rem;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    transition: border-color 0.3s;
+  }
+
+  .timeline-card:hover {
+    border-color: rgba(168,85,247,0.5);
+  }
+
+  .timeline-period {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--prism-cyan);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .timeline-period::before {
+    content: '◆';
+    font-size: 0.5rem;
+    color: var(--prism-accent);
+  }
+
+  .timeline-role {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--prism-text);
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-company {
+    font-size: 0.9rem;
+    color: var(--prism-accent);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-list {
+    list-style: none;
+  }
+
+  .timeline-list li {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    padding: 0.35rem 0;
+    padding-left: 1.25rem;
+    position: relative;
+  }
+
+  .timeline-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--prism-cyan);
+    font-size: 0.7rem;
+    top: 0.45rem;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--prism-card);
+    border: 1px solid var(--prism-border);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--prism-purple), var(--prism-cyan), var(--prism-green));
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(168,85,247,0.5);
+  }
+
+  .project-number {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: rgba(168,85,247,0.12);
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    line-height: 1;
+  }
+
+  .project-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--prism-text);
+    margin-bottom: 0.75rem;
+    padding-right: 3rem;
+  }
+
+  .project-desc {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .tag-purple { background: rgba(124,58,237,0.2); color: #c4b5fd; border: 1px solid rgba(124,58,237,0.3); }
+  .tag-cyan { background: rgba(6,182,212,0.15); color: #67e8f9; border: 1px solid rgba(6,182,212,0.3); }
+  .tag-green { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--prism-card);
+    border: 1px solid var(--prism-border);
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+    transition: border-color 0.3s;
+  }
+
+  .contact-item:hover { border-color: rgba(6,182,212,0.4); }
+
+  .contact-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(124,58,237,0.2);
+    border: 1px solid rgba(124,58,237,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+
+  .contact-detail p:first-child {
+    font-size: 0.75rem;
+    color: var(--prism-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+
+  .contact-detail p:last-child {
+    font-weight: 600;
+    color: var(--prism-text);
+    font-size: 0.95rem;
+  }
+
+  .contact-cta {
+    background: var(--prism-card);
+    border: 1px solid var(--prism-border);
+    padding: 2.5rem;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+
+  .contact-cta h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--prism-text);
+  }
+
+  .contact-cta p {
+    color: #94a3b8;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--prism-border);
+    color: var(--prism-muted);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  footer span { color: var(--prism-accent); }
+
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .about-grid, .contact-grid, .skills-bars { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    h1.hero-name { font-size: 2.5rem; }
+  }
+
+  /* Scroll animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating decor -->
+<div class="orb2"></div>
+<div class="particle p1"></div>
+<div class="particle p2"></div>
+<div class="particle p3"></div>
+<div class="particle p4"></div>
+<div class="particle p5"></div>
+<div class="particle p6"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">FLD</a>
+  <ul class="nav-links">
+    <li><a href="#about">Profil</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#experience">Expérience</a></li>
+    <li><a href="#formation">Formation</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  
+  <div class="hero-tag">Agent de Déploiement IT</div>
+  <h1 class="hero-name">FREDDIN LANDY<br>DIOGENE</h1>
+  <div class="hero-title">Technicien Systèmes &amp; Réseaux · Support IT N1/N2</div>
+  <p class="hero-desc">
+    Technicien informatique polyvalent — systèmes, réseaux, déploiement et développement.
+    Rigoureux, autonome et orienté service, je mets mes compétences au service
+    d'infrastructures IT fiables et performantes.
+  </p>
+  <div class="hero-badges">
+    <span class="badge">Windows &amp; Linux</span>
+    <span class="badge">MikroTik RouterOS</span>
+    <span class="badge">TCP/IP · VLAN · VPN</span>
+    <span class="badge">Python · PHP · MySQL</span>
+    <span class="badge">Support N1/N2</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#contact" class="btn-primary">Me Contacter</a>
+    <a href="#skills" class="btn-outline">Voir les compétences</a>
+  </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 — Profil</div>
+  <h2 class="section-title">À Propos de <span>Moi</span></h2>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>
+        Diplômé en Informatique, Mathématiques et Applications de l'Université de Toamasina,
+        je dispose d'une solide base technique couvrant les systèmes, les réseaux et le développement logiciel.
+      </p>
+      <p>
+        Ma maîtrise des environnements Windows et Linux (Kali, Ubuntu, Debian, Arch) me permet
+        d'intervenir aussi bien sur des déploiements de postes que sur l'administration de serveurs
+        et d'infrastructures réseau complexes.
+      </p>
+      <p>
+        Adepte de l'automatisation et de l'utilisation des outils IA (ChatGPT, Claude, Copilot),
+        j'optimise continuellement mes interventions pour des diagnostics rapides et précis.
+      </p>
+      <div style="display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;">
+        <span class="badge">📍 Toamasina, Madagascar</span>
+        <span class="badge">🌐 FR / EN</span>
+        <span class="badge" style="text-transform:lowercase;">📧 diogene756@gmail.com</span>
+      </div>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <span class="metric-value">3+</span>
+        <div class="metric-label">Ans d'expérience</div>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value">N1/N2</span>
+        <div class="metric-label">Support IT</div>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value">5+</span>
+        <div class="metric-label">Distros Linux</div>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value">2026</span>
+        <div class="metric-label">Dernier projet</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">02 — Compétences</div>
+  <h2 class="section-title">Stack <span>Technique</span></h2>
+
+  <div class="skills-hex-grid reveal">
+    <div class="hex-skill purple"><div class="hex-icon">🖥️</div><div class="hex-label">Windows 7/10/11</div></div>
+    <div class="hex-skill cyan"><div class="hex-icon">🐧</div><div class="hex-label">Linux Admin</div></div>
+    <div class="hex-skill green"><div class="hex-icon">🌐</div><div class="hex-label">TCP/IP · LAN</div></div>
+    <div class="hex-skill purple"><div class="hex-icon">🔀</div><div class="hex-label">MikroTik</div></div>
+    <div class="hex-skill cyan"><div class="hex-icon">🔒</div><div class="hex-label">VPN · Firewall</div></div>
+    <div class="hex-skill green"><div class="hex-icon">🐍</div><div class="hex-label">Python</div></div>
+    <div class="hex-skill purple"><div class="hex-icon">🐘</div><div class="hex-label">PHP · MySQL</div></div>
+    <div class="hex-skill cyan"><div class="hex-icon">📷</div><div class="hex-label">OpenCV</div></div>
+    <div class="hex-skill green"><div class="hex-icon">📝</div><div class="hex-label">WordPress</div></div>
+    <div class="hex-skill purple"><div class="hex-icon">🛠️</div><div class="hex-label">Bash Scripting</div></div>
+    <div class="hex-skill cyan"><div class="hex-icon">📊</div><div class="hex-label">Parc Informatique</div></div>
+    <div class="hex-skill green"><div class="hex-icon">🤖</div><div class="hex-label">IA Tools</div></div>
+  </div>
+
+  <div class="skills-bars reveal">
+    <div class="skill-bar-item">
+      <div class="skill-bar-header">
+        <span class="skill-bar-name">Systèmes Windows/Linux</span>
+        <span class="skill-bar-pct">90%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill fill-purple" style="width:90%"></div></div>
+    </div>
+    <div class="skill-bar-item">
+      <div class="skill-bar-header">
+        <span class="skill-bar-name">Réseaux &amp; MikroTik</span>
+        <span class="skill-bar-pct">85%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill fill-cyan" style="width:85%"></div></div>
+    </div>
+    <div class="skill-bar-item">
+      <div class="skill-bar-header">
+        <span class="skill-bar-name">Support Utilisateurs N1/N2</span>
+        <span class="skill-bar-pct">92%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill fill-green" style="width:92%"></div></div>
+    </div>
+    <div class="skill-bar-item">
+      <div class="skill-bar-header">
+        <span class="skill-bar-name">Python &amp; Développement</span>
+        <span class="skill-bar-pct">75%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill fill-purple" style="width:75%"></div></div>
+    </div>
+    <div class="skill-bar-item">
+      <div class="skill-bar-header">
+        <span class="skill-bar-name">WordPress &amp; Web</span>
+        <span class="skill-bar-pct">80%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill fill-cyan" style="width:80%"></div></div>
+    </div>
+    <div class="skill-bar-item">
+      <div class="skill-bar-header">
+        <span class="skill-bar-name">Cybersécurité &amp; VPN</span>
+        <span class="skill-bar-pct">70%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill fill-green" style="width:70%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">03 — Expériences</div>
+  <h2 class="section-title">Expériences <span>Professionnelles</span></h2>
+
+  <div class="timeline reveal">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-period">Expérience terrain</div>
+        <div class="timeline-role">Technicien Réseau — Cybercafés</div>
+        <div class="timeline-company">Plusieurs cybercafés · Toamasina, Madagascar</div>
+        <ul class="timeline-list">
+          <li>Gestion et configuration de réseaux Internet via connexion <strong style="color:var(--prism-cyan)">Starlink</strong> : installation, orientation antenne, configuration routeur</li>
+          <li>Déploiement et administration de routeurs <strong style="color:var(--prism-cyan)">MikroTik</strong> : hotspot, gestion des bandes passantes, NAT, firewall et DHCP</li>
+          <li>Installation et configuration de <strong style="color:var(--prism-cyan)">capteurs réseau</strong> pour la supervision et le contrôle du trafic</li>
+          <li>Maintenance préventive et corrective des équipements réseau des cybercafés</li>
+          <li>Optimisation de la distribution du signal Wi-Fi et résolution des incidents de connectivité</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-period">Mars 2022 – Juin 2025</div>
+        <div class="timeline-role">Développeur Web &amp; Technicien IT Freelance</div>
+        <div class="timeline-company">SIFAKA TRAVEL · Toamasina, Madagascar — <a href="https://sifaktravel.com/" target="_blank" style="color:var(--prism-cyan);text-decoration:none;letter-spacing:0.05em;">sifaktravel.com ↗</a></div>
+        <ul class="timeline-list">
+          <li>Déploiement et maintenance du site web sous WordPress</li>
+          <li>Configuration et mise à jour des systèmes et outils web</li>
+          <li>Support technique de premier niveau pour les équipements</li>
+          <li>Rédaction de procédures et documentation technique</li>
+          <li>Gestion des comptes utilisateurs et des droits d'accès</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FORMATION -->
+<section id="formation">
+  <div class="section-label">04 — Formation</div>
+  <h2 class="section-title">Parcours <span>Académique</span></h2>
+
+  <div class="timeline reveal">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-period">2021 – 2022</div>
+        <div class="timeline-role">Licence en Informatique, Mathématiques et Applications</div>
+        <div class="timeline-company">Université de Toamasina</div>
+        <ul class="timeline-list">
+          <li>Formation en systèmes informatiques, réseaux et algorithmique</li>
+          <li>Bases de données, développement logiciel et mathématiques appliquées</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-period">2016 – 2017</div>
+        <div class="timeline-role">Baccalauréat</div>
+        <div class="timeline-company">Université de Toamasina</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-period">2024 · En ligne</div>
+        <div class="timeline-role">Certification — Wi-Fi Hacking &amp; Sécurité Réseau</div>
+        <div class="timeline-company">Formation en ligne · Veille cybersécurité</div>
+        <ul class="timeline-list">
+          <li>Techniques d'audit Wi-Fi et analyse de vulnérabilités</li>
+          <li>Renforcement des bonnes pratiques de sécurité réseau</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">05 — Réalisations</div>
+  <h2 class="section-title">Projets <span>Personnels</span></h2>
+
+  <div class="projects-grid reveal">
+
+    <div class="project-card">
+      <div class="project-number">01</div>
+      <div class="project-title">Système de Détection de Mouvement Humain</div>
+      <p class="project-desc">
+        Développement d'un système de surveillance en temps réel avec détection automatique
+        de mouvements humains via caméra. Interface d'alerte intégrée et application des
+        principes de contrôle d'accès sécurisé.
+      </p>
+      <div class="project-tags">
+        <span class="tag tag-green">Python</span>
+        <span class="tag tag-cyan">OpenCV</span>
+        <span class="tag tag-purple">Computer Vision</span>
+        <span class="tag tag-green">2026</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-number">02</div>
+      <div class="project-title">Site Web SIFAKA TRAVEL</div>
+      <p class="project-desc">
+        Déploiement complet du site web de l'agence de voyage sous WordPress —
+        configuration, personnalisation du thème, gestion des contenus, optimisation
+        des performances et maintenance continue sur 3 ans.
+      </p>
+      <div class="project-tags">
+        <span class="tag tag-cyan">WordPress</span>
+        <span class="tag tag-purple">PHP</span>
+        <span class="tag tag-green">HTML/CSS</span>
+        <span class="tag tag-cyan">MySQL</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-number">03</div>
+      <div class="project-title">Infrastructure Réseau MikroTik</div>
+      <p class="project-desc">
+        Configuration avancée de routeurs MikroTik avec RouterOS : mise en place de
+        règles firewall, NAT, serveur DHCP, portail hotspot, tunnels VPN et gestion
+        fine des bandes passantes pour des réseaux d'entreprise.
+      </p>
+      <div class="project-tags">
+        <span class="tag tag-purple">MikroTik</span>
+        <span class="tag tag-green">RouterOS</span>
+        <span class="tag tag-cyan">VPN</span>
+        <span class="tag tag-purple">Firewall</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-number">04</div>
+      <div class="project-title">Déploiement de Parc Informatique</div>
+      <p class="project-desc">
+        Installation, configuration et déploiement de postes de travail Windows et Linux,
+        gestion des licences, application des correctifs de sécurité et documentation
+        technique des interventions réalisées.
+      </p>
+      <div class="project-tags">
+        <span class="tag tag-cyan">Windows 10/11</span>
+        <span class="tag tag-green">Linux</span>
+        <span class="tag tag-purple">Bash</span>
+        <span class="tag tag-cyan">Sécurité IT</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">06 — Contact</div>
+  <h2 class="section-title">Entrons en <span>Contact</span></h2>
+
+  <div class="contact-grid reveal">
+    <div class="contact-info">
+
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div class="contact-detail">
+          <p>Email</p>
+          <p style="text-transform:lowercase;">diogene756@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div class="contact-detail">
+          <p>Téléphone</p>
+          <p>038 06 796 52</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail">
+          <p>Localisation</p>
+          <p>Toamasina, Madagascar</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <div class="contact-detail">
+          <p>Langues</p>
+          <p>Français courant · Anglais intermédiaire</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="contact-cta">
+      <h3>Disponible pour de nouveaux défis</h3>
+      <p>
+        Je suis à la recherche d'opportunités en déploiement IT, support systèmes &amp; réseaux
+        ou développement. N'hésitez pas à me contacter pour discuter de vos besoins techniques.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:0.75rem;">
+        <div style="display:flex;gap:0.5rem;align-items:center;padding:0.85rem;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.3);clip-path:polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);">
+          <span style="color:var(--prism-accent);font-size:0.8rem;">◆</span>
+          <span style="font-size:0.9rem;color:var(--prism-text);">Ouvert aux opportunités full-time</span>
+        </div>
+        <div style="display:flex;gap:0.5rem;align-items:center;padding:0.85rem;background:rgba(6,182,212,0.08);border:1px solid rgba(6,182,212,0.3);clip-path:polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);">
+          <span style="color:var(--prism-cyan);font-size:0.8rem;">◆</span>
+          <span style="font-size:0.9rem;color:var(--prism-text);">Missions freelance acceptées</span>
+        </div>
+        <div style="display:flex;gap:0.5rem;align-items:center;padding:0.85rem;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.3);clip-path:polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);">
+          <span style="color:var(--prism-green);font-size:0.8rem;">◆</span>
+          <span style="font-size:0.9rem;color:var(--prism-text);">Mobilité · Toamasina &amp; environs</span>
+        </div>
+      </div>
+      <a href="mailto:diogene756@gmail.com" class="btn-primary" style="margin-top:2rem;display:inline-block;">Envoyer un message</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2023 <span>Freddin Landy Diogene</span> — Agent de Déploiement IT · Toamasina, Madagascar</p>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav active state
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? '#06b6d4' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
